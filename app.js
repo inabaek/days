@@ -30,9 +30,8 @@ function animateSlides(){
     slideScene = new ScrollMagic.Scene({
         triggerElement: slide,
         triggerHook: 0.25,
-        reverse: false
-        
-        
+        reverse: false,
+        nullTargetWarn: false
     })
     .setTween(slideTl)
     .addTo(controller);
@@ -200,10 +199,6 @@ function activeCursor(e) {
       
     });
   }
-  
-  gsap.config({
-    nullTargetWarn: false
-  });
 
   //eventlisteners
   burger.addEventListener('click', navToggle);

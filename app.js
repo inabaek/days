@@ -6,6 +6,7 @@ let detailScene;
 function animateSlides(){
     //initiate controller
     controller = new ScrollMagic.Controller();
+    
     //select some things
     const sliders = document.querySelectorAll('.slide');
     const nav = document.querySelector('.nav-header');
@@ -18,23 +19,26 @@ function animateSlides(){
     const slideTl = gsap.timeline({
         defaults: {duration: 1, ease: 'power2.inOut'}
     });
+    
     slideTl.fromTo(revealImg, { x: '0%' }, { x: '100%' });
     slideTl.fromTo(img, { scale: 2 }, { scale: 1 }, "-=1");
     slideTl.fromTo(revealText, { x: '0%' }, { x: '100%' }, "-=0.75");
+    
+   
 
     //create scene
     slideScene = new ScrollMagic.Scene({
         triggerElement: slide,
         triggerHook: 0.25,
         reverse: false
+        
+        
     })
     .setTween(slideTl)
-    .addIndicators({ 
-        colorStart: 'white', 
-        colorTrigger: 'white', 
-        name:'slide'
-    })
     .addTo(controller);
+    
+   
+
     //new animation
     const pageTl = gsap.timeline();
     let nextSlide = slides.length - 1 === index ? 'end' : slides[index + 1];
@@ -49,12 +53,6 @@ function animateSlides(){
         triggerElement: slide,
         duration: '100%',
         triggerHook: 0
-    })
-    .addIndicators({
-        colorStart: 'white', 
-        colorTrigger: 'white', 
-        name:'page',
-        indent: 200
     })
     .setPin(slide, { pushFollowers: false })
     .setTween(pageTl)
@@ -185,9 +183,11 @@ function activeCursor(e) {
     const slideTl = gsap.timeline({ defaults: { duration: 1 } });
     let nextSlide = slides.length - 1 === index ? "end" : slides[index + 1];
     const nextImg = nextSlide.querySelector("img");
+    
     slideTl.fromTo(slide, { opacity: 1 }, { opacity: 0 });
     slideTl.fromTo(nextSlide, { opacity: 0 }, { opacity: 1 }, "-=1");
     slideTl.fromTo(nextImg, { x: "50%" }, { x: "0%" });
+    
     //Scene
     detailScene = new ScrollMagic.Scene({
       triggerElement: slide,
@@ -196,11 +196,8 @@ function activeCursor(e) {
     })
       .setPin(slide, { pushFollowers: false })
       .setTween(slideTl)
-      .addIndicators({        
-      colorStart: 'white', 
-      colorTrigger: 'white', 
-      name:'detailScene'})
       .addTo(controller);
+      
     });
   }
 

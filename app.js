@@ -200,8 +200,10 @@ function activeCursor(e) {
       
     });
   }
-
-
+  
+  gsap.config({
+    nullTargetWarn: false
+  });
 
   //eventlisteners
   burger.addEventListener('click', navToggle);
